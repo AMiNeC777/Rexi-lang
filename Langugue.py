@@ -342,43 +342,17 @@ class Interpreter:
 
 
 # Example usage
-def main():
+def main(input):
     # Test cases with if-else statements and blocks
-    tests = [
-        """
-        x = 5;
-        y = 3;
-        if (x > y) {
-            result = x + y;
-            doubled = result * 2;
-        } else {
-            result = x - y;
-            doubled = result * 2;
-        }
-        """,
-        """
-        a = 10;
-        b = 20;
-        if (a < b) {
-            max = b;
-            min = a;
-        }
-        diff = max - min;
-        """
-    ]
-
+    global output
     interpreter = Interpreter()
-    for test in tests:
-        try:
-            lexer = Lexer(test)
-            parser = Parser(lexer)
-            tree = parser.parse()
-            result = interpreter.interpret(tree)
-            print(f"Program:\n{test}")
-            print(f"Variables: {interpreter.variables}\n")
-        except Exception as e:
-            print(f"Error: {str(e)}\n")
-
-
-if __name__ == '__main__':
-    main()
+    try:
+        lexer = Lexer(input)
+        parser = Parser(lexer)
+        tree = parser.parse()
+        result = interpreter.interpret(tree)
+        output = f"Program:\n{input}\n"
+        output += f"Variables: {interpreter.variables}\n"
+    except Exception as e:
+        output =f"Error: {str(e)}\n"
+    return output
