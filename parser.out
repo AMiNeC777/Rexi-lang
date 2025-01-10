@@ -1,0 +1,2566 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declarations
+Rule 2     declarations -> declaration
+Rule 3     declarations -> declarations declaration
+Rule 4     declaration -> var_declaration
+Rule 5     declaration -> function_declaration
+Rule 6     declaration -> statement
+Rule 7     var_declaration -> TYPE ID ASSIGN expression SEMICOLON
+Rule 8     var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON
+Rule 9     function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block
+Rule 10    param_list -> <empty>
+Rule 11    param_list -> param_list_not_empty
+Rule 12    param_list_not_empty -> param
+Rule 13    param_list_not_empty -> param_list_not_empty COMMA param
+Rule 14    param -> TYPE ID
+Rule 15    block -> LBRACE statements RBRACE
+Rule 16    statements -> <empty>
+Rule 17    statements -> statement_list
+Rule 18    statement_list -> statement
+Rule 19    statement_list -> statement_list statement
+Rule 20    statement -> var_declaration
+Rule 21    statement -> assignment
+Rule 22    statement -> if_statement
+Rule 23    statement -> while_loop
+Rule 24    statement -> for_loop
+Rule 25    statement -> function_call SEMICOLON
+Rule 26    statement -> return_statement
+Rule 27    statement -> output_statement
+Rule 28    assignment -> ID ASSIGN expression SEMICOLON
+Rule 29    assignment -> array_access ASSIGN expression SEMICOLON
+Rule 30    if_statement -> IF expression THEN block END
+Rule 31    if_statement -> IF expression THEN block ELSE block END
+Rule 32    while_loop -> WHILE expression block
+Rule 33    for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block
+Rule 34    expression -> logical_or
+Rule 35    logical_or -> logical_and
+Rule 36    logical_or -> logical_or EQUALS logical_and
+Rule 37    logical_or -> logical_or NOTEQUALS logical_and
+Rule 38    logical_and -> comparison
+Rule 39    logical_and -> logical_and GT comparison
+Rule 40    logical_and -> logical_and LT comparison
+Rule 41    logical_and -> logical_and GTE comparison
+Rule 42    logical_and -> logical_and LTE comparison
+Rule 43    comparison -> arithmetic
+Rule 44    arithmetic -> term
+Rule 45    arithmetic -> arithmetic PLUS term
+Rule 46    arithmetic -> arithmetic MINUS term
+Rule 47    term -> factor
+Rule 48    term -> term MULTIPLY factor
+Rule 49    term -> term DIVIDE factor
+Rule 50    factor -> NUMBER
+Rule 51    factor -> STRING
+Rule 52    factor -> BOOLEAN
+Rule 53    factor -> ID
+Rule 54    factor -> array_access
+Rule 55    factor -> function_call
+Rule 56    factor -> LPAREN expression RPAREN
+Rule 57    array_access -> ID LBRACKET expression RBRACKET
+Rule 58    function_call -> ID LPAREN arg_list RPAREN
+Rule 59    arg_list -> <empty>
+Rule 60    arg_list -> arg_list_not_empty
+Rule 61    arg_list_not_empty -> expression
+Rule 62    arg_list_not_empty -> arg_list_not_empty COMMA expression
+Rule 63    return_statement -> RETURN expression SEMICOLON
+Rule 64    output_statement -> OUTPUT expression SEMICOLON
+
+Terminals, with rules where they appear
+
+ASSIGN               : 7 28 29
+BOOLEAN              : 52
+COMMA                : 13 62
+DIVIDE               : 49
+ELSE                 : 31
+END                  : 30 31
+EQUALS               : 36
+FOR                  : 33
+FUNCTION             : 9
+GT                   : 39
+GTE                  : 41
+ID                   : 7 8 9 14 28 53 57 58
+IF                   : 30 31
+LBRACE               : 15
+LBRACKET             : 8 57
+LPAREN               : 9 33 56 58
+LT                   : 40
+LTE                  : 42
+MINUS                : 46
+MULTIPLY             : 48
+NOTEQUALS            : 37
+NUMBER               : 8 50
+OUTPUT               : 64
+PLUS                 : 45
+RBRACE               : 15
+RBRACKET             : 8 57
+RETURN               : 63
+RPAREN               : 9 33 56 58
+SEMICOLON            : 7 8 25 28 29 33 63 64
+STRING               : 51
+THEN                 : 30 31
+TYPE                 : 7 8 9 14
+WHILE                : 32
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg_list             : 58
+arg_list_not_empty   : 60 62
+arithmetic           : 43 45 46
+array_access         : 29 54
+assignment           : 21 33 33
+block                : 9 30 31 31 32 33
+comparison           : 38 39 40 41 42
+declaration          : 2 3
+declarations         : 1 3
+expression           : 7 28 29 30 31 32 33 56 57 61 62 63 64
+factor               : 47 48 49
+for_loop             : 24
+function_call        : 25 55
+function_declaration : 5
+if_statement         : 22
+logical_and          : 35 36 37 39 40 41 42
+logical_or           : 34 36 37
+output_statement     : 27
+param                : 12 13
+param_list           : 9
+param_list_not_empty : 11 13
+program              : 0
+return_statement     : 26
+statement            : 6 18 19
+statement_list       : 17 19
+statements           : 15
+term                 : 44 45 46 48 49
+var_declaration      : 4 20
+while_loop           : 23
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declarations
+    (2) declarations -> . declaration
+    (3) declarations -> . declarations declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . function_declaration
+    (6) declaration -> . statement
+    (7) var_declaration -> . TYPE ID ASSIGN expression SEMICOLON
+    (8) var_declaration -> . TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON
+    (9) function_declaration -> . FUNCTION ID LPAREN param_list RPAREN TYPE block
+    (20) statement -> . var_declaration
+    (21) statement -> . assignment
+    (22) statement -> . if_statement
+    (23) statement -> . while_loop
+    (24) statement -> . for_loop
+    (25) statement -> . function_call SEMICOLON
+    (26) statement -> . return_statement
+    (27) statement -> . output_statement
+    (28) assignment -> . ID ASSIGN expression SEMICOLON
+    (29) assignment -> . array_access ASSIGN expression SEMICOLON
+    (30) if_statement -> . IF expression THEN block END
+    (31) if_statement -> . IF expression THEN block ELSE block END
+    (32) while_loop -> . WHILE expression block
+    (33) for_loop -> . FOR LPAREN assignment expression SEMICOLON assignment RPAREN block
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+    (63) return_statement -> . RETURN expression SEMICOLON
+    (64) output_statement -> . OUTPUT expression SEMICOLON
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+
+    TYPE            shift and go to state 7
+    FUNCTION        shift and go to state 9
+    ID              shift and go to state 8
+    IF              shift and go to state 18
+    WHILE           shift and go to state 19
+    FOR             shift and go to state 20
+    RETURN          shift and go to state 21
+    OUTPUT          shift and go to state 22
+
+    program                        shift and go to state 1
+    declarations                   shift and go to state 2
+    declaration                    shift and go to state 3
+    var_declaration                shift and go to state 4
+    function_declaration           shift and go to state 5
+    statement                      shift and go to state 6
+    assignment                     shift and go to state 10
+    if_statement                   shift and go to state 11
+    while_loop                     shift and go to state 12
+    for_loop                       shift and go to state 13
+    function_call                  shift and go to state 14
+    return_statement               shift and go to state 15
+    output_statement               shift and go to state 16
+    array_access                   shift and go to state 17
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> declarations .
+    (3) declarations -> declarations . declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . function_declaration
+    (6) declaration -> . statement
+    (7) var_declaration -> . TYPE ID ASSIGN expression SEMICOLON
+    (8) var_declaration -> . TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON
+    (9) function_declaration -> . FUNCTION ID LPAREN param_list RPAREN TYPE block
+    (20) statement -> . var_declaration
+    (21) statement -> . assignment
+    (22) statement -> . if_statement
+    (23) statement -> . while_loop
+    (24) statement -> . for_loop
+    (25) statement -> . function_call SEMICOLON
+    (26) statement -> . return_statement
+    (27) statement -> . output_statement
+    (28) assignment -> . ID ASSIGN expression SEMICOLON
+    (29) assignment -> . array_access ASSIGN expression SEMICOLON
+    (30) if_statement -> . IF expression THEN block END
+    (31) if_statement -> . IF expression THEN block ELSE block END
+    (32) while_loop -> . WHILE expression block
+    (33) for_loop -> . FOR LPAREN assignment expression SEMICOLON assignment RPAREN block
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+    (63) return_statement -> . RETURN expression SEMICOLON
+    (64) output_statement -> . OUTPUT expression SEMICOLON
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+
+    $end            reduce using rule 1 (program -> declarations .)
+    TYPE            shift and go to state 7
+    FUNCTION        shift and go to state 9
+    ID              shift and go to state 8
+    IF              shift and go to state 18
+    WHILE           shift and go to state 19
+    FOR             shift and go to state 20
+    RETURN          shift and go to state 21
+    OUTPUT          shift and go to state 22
+
+    declaration                    shift and go to state 23
+    var_declaration                shift and go to state 4
+    function_declaration           shift and go to state 5
+    statement                      shift and go to state 6
+    assignment                     shift and go to state 10
+    if_statement                   shift and go to state 11
+    while_loop                     shift and go to state 12
+    for_loop                       shift and go to state 13
+    function_call                  shift and go to state 14
+    return_statement               shift and go to state 15
+    output_statement               shift and go to state 16
+    array_access                   shift and go to state 17
+
+state 3
+
+    (2) declarations -> declaration .
+
+    TYPE            reduce using rule 2 (declarations -> declaration .)
+    FUNCTION        reduce using rule 2 (declarations -> declaration .)
+    ID              reduce using rule 2 (declarations -> declaration .)
+    IF              reduce using rule 2 (declarations -> declaration .)
+    WHILE           reduce using rule 2 (declarations -> declaration .)
+    FOR             reduce using rule 2 (declarations -> declaration .)
+    RETURN          reduce using rule 2 (declarations -> declaration .)
+    OUTPUT          reduce using rule 2 (declarations -> declaration .)
+    $end            reduce using rule 2 (declarations -> declaration .)
+
+
+state 4
+
+    (4) declaration -> var_declaration .
+    (20) statement -> var_declaration .
+
+  ! reduce/reduce conflict for TYPE resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for FUNCTION resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for ID resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for IF resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for WHILE resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for FOR resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for RETURN resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for OUTPUT resolved using rule 4 (declaration -> var_declaration .)
+  ! reduce/reduce conflict for $end resolved using rule 4 (declaration -> var_declaration .)
+    TYPE            reduce using rule 4 (declaration -> var_declaration .)
+    FUNCTION        reduce using rule 4 (declaration -> var_declaration .)
+    ID              reduce using rule 4 (declaration -> var_declaration .)
+    IF              reduce using rule 4 (declaration -> var_declaration .)
+    WHILE           reduce using rule 4 (declaration -> var_declaration .)
+    FOR             reduce using rule 4 (declaration -> var_declaration .)
+    RETURN          reduce using rule 4 (declaration -> var_declaration .)
+    OUTPUT          reduce using rule 4 (declaration -> var_declaration .)
+    $end            reduce using rule 4 (declaration -> var_declaration .)
+
+  ! TYPE            [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! FUNCTION        [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! ID              [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! IF              [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! WHILE           [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! FOR             [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! RETURN          [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! OUTPUT          [ reduce using rule 20 (statement -> var_declaration .) ]
+  ! $end            [ reduce using rule 20 (statement -> var_declaration .) ]
+
+
+state 5
+
+    (5) declaration -> function_declaration .
+
+    TYPE            reduce using rule 5 (declaration -> function_declaration .)
+    FUNCTION        reduce using rule 5 (declaration -> function_declaration .)
+    ID              reduce using rule 5 (declaration -> function_declaration .)
+    IF              reduce using rule 5 (declaration -> function_declaration .)
+    WHILE           reduce using rule 5 (declaration -> function_declaration .)
+    FOR             reduce using rule 5 (declaration -> function_declaration .)
+    RETURN          reduce using rule 5 (declaration -> function_declaration .)
+    OUTPUT          reduce using rule 5 (declaration -> function_declaration .)
+    $end            reduce using rule 5 (declaration -> function_declaration .)
+
+
+state 6
+
+    (6) declaration -> statement .
+
+    TYPE            reduce using rule 6 (declaration -> statement .)
+    FUNCTION        reduce using rule 6 (declaration -> statement .)
+    ID              reduce using rule 6 (declaration -> statement .)
+    IF              reduce using rule 6 (declaration -> statement .)
+    WHILE           reduce using rule 6 (declaration -> statement .)
+    FOR             reduce using rule 6 (declaration -> statement .)
+    RETURN          reduce using rule 6 (declaration -> statement .)
+    OUTPUT          reduce using rule 6 (declaration -> statement .)
+    $end            reduce using rule 6 (declaration -> statement .)
+
+
+state 7
+
+    (7) var_declaration -> TYPE . ID ASSIGN expression SEMICOLON
+    (8) var_declaration -> TYPE . ID LBRACKET NUMBER RBRACKET SEMICOLON
+
+    ID              shift and go to state 24
+
+
+state 8
+
+    (28) assignment -> ID . ASSIGN expression SEMICOLON
+    (58) function_call -> ID . LPAREN arg_list RPAREN
+    (57) array_access -> ID . LBRACKET expression RBRACKET
+
+    ASSIGN          shift and go to state 25
+    LPAREN          shift and go to state 26
+    LBRACKET        shift and go to state 27
+
+
+state 9
+
+    (9) function_declaration -> FUNCTION . ID LPAREN param_list RPAREN TYPE block
+
+    ID              shift and go to state 28
+
+
+state 10
+
+    (21) statement -> assignment .
+
+    TYPE            reduce using rule 21 (statement -> assignment .)
+    FUNCTION        reduce using rule 21 (statement -> assignment .)
+    ID              reduce using rule 21 (statement -> assignment .)
+    IF              reduce using rule 21 (statement -> assignment .)
+    WHILE           reduce using rule 21 (statement -> assignment .)
+    FOR             reduce using rule 21 (statement -> assignment .)
+    RETURN          reduce using rule 21 (statement -> assignment .)
+    OUTPUT          reduce using rule 21 (statement -> assignment .)
+    $end            reduce using rule 21 (statement -> assignment .)
+    RBRACE          reduce using rule 21 (statement -> assignment .)
+
+
+state 11
+
+    (22) statement -> if_statement .
+
+    TYPE            reduce using rule 22 (statement -> if_statement .)
+    FUNCTION        reduce using rule 22 (statement -> if_statement .)
+    ID              reduce using rule 22 (statement -> if_statement .)
+    IF              reduce using rule 22 (statement -> if_statement .)
+    WHILE           reduce using rule 22 (statement -> if_statement .)
+    FOR             reduce using rule 22 (statement -> if_statement .)
+    RETURN          reduce using rule 22 (statement -> if_statement .)
+    OUTPUT          reduce using rule 22 (statement -> if_statement .)
+    $end            reduce using rule 22 (statement -> if_statement .)
+    RBRACE          reduce using rule 22 (statement -> if_statement .)
+
+
+state 12
+
+    (23) statement -> while_loop .
+
+    TYPE            reduce using rule 23 (statement -> while_loop .)
+    FUNCTION        reduce using rule 23 (statement -> while_loop .)
+    ID              reduce using rule 23 (statement -> while_loop .)
+    IF              reduce using rule 23 (statement -> while_loop .)
+    WHILE           reduce using rule 23 (statement -> while_loop .)
+    FOR             reduce using rule 23 (statement -> while_loop .)
+    RETURN          reduce using rule 23 (statement -> while_loop .)
+    OUTPUT          reduce using rule 23 (statement -> while_loop .)
+    $end            reduce using rule 23 (statement -> while_loop .)
+    RBRACE          reduce using rule 23 (statement -> while_loop .)
+
+
+state 13
+
+    (24) statement -> for_loop .
+
+    TYPE            reduce using rule 24 (statement -> for_loop .)
+    FUNCTION        reduce using rule 24 (statement -> for_loop .)
+    ID              reduce using rule 24 (statement -> for_loop .)
+    IF              reduce using rule 24 (statement -> for_loop .)
+    WHILE           reduce using rule 24 (statement -> for_loop .)
+    FOR             reduce using rule 24 (statement -> for_loop .)
+    RETURN          reduce using rule 24 (statement -> for_loop .)
+    OUTPUT          reduce using rule 24 (statement -> for_loop .)
+    $end            reduce using rule 24 (statement -> for_loop .)
+    RBRACE          reduce using rule 24 (statement -> for_loop .)
+
+
+state 14
+
+    (25) statement -> function_call . SEMICOLON
+
+    SEMICOLON       shift and go to state 29
+
+
+state 15
+
+    (26) statement -> return_statement .
+
+    TYPE            reduce using rule 26 (statement -> return_statement .)
+    FUNCTION        reduce using rule 26 (statement -> return_statement .)
+    ID              reduce using rule 26 (statement -> return_statement .)
+    IF              reduce using rule 26 (statement -> return_statement .)
+    WHILE           reduce using rule 26 (statement -> return_statement .)
+    FOR             reduce using rule 26 (statement -> return_statement .)
+    RETURN          reduce using rule 26 (statement -> return_statement .)
+    OUTPUT          reduce using rule 26 (statement -> return_statement .)
+    $end            reduce using rule 26 (statement -> return_statement .)
+    RBRACE          reduce using rule 26 (statement -> return_statement .)
+
+
+state 16
+
+    (27) statement -> output_statement .
+
+    TYPE            reduce using rule 27 (statement -> output_statement .)
+    FUNCTION        reduce using rule 27 (statement -> output_statement .)
+    ID              reduce using rule 27 (statement -> output_statement .)
+    IF              reduce using rule 27 (statement -> output_statement .)
+    WHILE           reduce using rule 27 (statement -> output_statement .)
+    FOR             reduce using rule 27 (statement -> output_statement .)
+    RETURN          reduce using rule 27 (statement -> output_statement .)
+    OUTPUT          reduce using rule 27 (statement -> output_statement .)
+    $end            reduce using rule 27 (statement -> output_statement .)
+    RBRACE          reduce using rule 27 (statement -> output_statement .)
+
+
+state 17
+
+    (29) assignment -> array_access . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 30
+
+
+state 18
+
+    (30) if_statement -> IF . expression THEN block END
+    (31) if_statement -> IF . expression THEN block ELSE block END
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 31
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 19
+
+    (32) while_loop -> WHILE . expression block
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 45
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 20
+
+    (33) for_loop -> FOR . LPAREN assignment expression SEMICOLON assignment RPAREN block
+
+    LPAREN          shift and go to state 46
+
+
+state 21
+
+    (63) return_statement -> RETURN . expression SEMICOLON
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 47
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 22
+
+    (64) output_statement -> OUTPUT . expression SEMICOLON
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 48
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 23
+
+    (3) declarations -> declarations declaration .
+
+    TYPE            reduce using rule 3 (declarations -> declarations declaration .)
+    FUNCTION        reduce using rule 3 (declarations -> declarations declaration .)
+    ID              reduce using rule 3 (declarations -> declarations declaration .)
+    IF              reduce using rule 3 (declarations -> declarations declaration .)
+    WHILE           reduce using rule 3 (declarations -> declarations declaration .)
+    FOR             reduce using rule 3 (declarations -> declarations declaration .)
+    RETURN          reduce using rule 3 (declarations -> declarations declaration .)
+    OUTPUT          reduce using rule 3 (declarations -> declarations declaration .)
+    $end            reduce using rule 3 (declarations -> declarations declaration .)
+
+
+state 24
+
+    (7) var_declaration -> TYPE ID . ASSIGN expression SEMICOLON
+    (8) var_declaration -> TYPE ID . LBRACKET NUMBER RBRACKET SEMICOLON
+
+    ASSIGN          shift and go to state 49
+    LBRACKET        shift and go to state 50
+
+
+state 25
+
+    (28) assignment -> ID ASSIGN . expression SEMICOLON
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 51
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 26
+
+    (58) function_call -> ID LPAREN . arg_list RPAREN
+    (59) arg_list -> .
+    (60) arg_list -> . arg_list_not_empty
+    (61) arg_list_not_empty -> . expression
+    (62) arg_list_not_empty -> . arg_list_not_empty COMMA expression
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    RPAREN          reduce using rule 59 (arg_list -> .)
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    arg_list                       shift and go to state 52
+    arg_list_not_empty             shift and go to state 53
+    expression                     shift and go to state 54
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 27
+
+    (57) array_access -> ID LBRACKET . expression RBRACKET
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 55
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 28
+
+    (9) function_declaration -> FUNCTION ID . LPAREN param_list RPAREN TYPE block
+
+    LPAREN          shift and go to state 56
+
+
+state 29
+
+    (25) statement -> function_call SEMICOLON .
+
+    TYPE            reduce using rule 25 (statement -> function_call SEMICOLON .)
+    FUNCTION        reduce using rule 25 (statement -> function_call SEMICOLON .)
+    ID              reduce using rule 25 (statement -> function_call SEMICOLON .)
+    IF              reduce using rule 25 (statement -> function_call SEMICOLON .)
+    WHILE           reduce using rule 25 (statement -> function_call SEMICOLON .)
+    FOR             reduce using rule 25 (statement -> function_call SEMICOLON .)
+    RETURN          reduce using rule 25 (statement -> function_call SEMICOLON .)
+    OUTPUT          reduce using rule 25 (statement -> function_call SEMICOLON .)
+    $end            reduce using rule 25 (statement -> function_call SEMICOLON .)
+    RBRACE          reduce using rule 25 (statement -> function_call SEMICOLON .)
+
+
+state 30
+
+    (29) assignment -> array_access ASSIGN . expression SEMICOLON
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    array_access                   shift and go to state 42
+    expression                     shift and go to state 57
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    function_call                  shift and go to state 43
+
+state 31
+
+    (30) if_statement -> IF expression . THEN block END
+    (31) if_statement -> IF expression . THEN block ELSE block END
+
+    THEN            shift and go to state 58
+
+
+state 32
+
+    (34) expression -> logical_or .
+    (36) logical_or -> logical_or . EQUALS logical_and
+    (37) logical_or -> logical_or . NOTEQUALS logical_and
+
+    THEN            reduce using rule 34 (expression -> logical_or .)
+    LBRACE          reduce using rule 34 (expression -> logical_or .)
+    SEMICOLON       reduce using rule 34 (expression -> logical_or .)
+    COMMA           reduce using rule 34 (expression -> logical_or .)
+    RPAREN          reduce using rule 34 (expression -> logical_or .)
+    RBRACKET        reduce using rule 34 (expression -> logical_or .)
+    EQUALS          shift and go to state 59
+    NOTEQUALS       shift and go to state 60
+
+
+state 33
+
+    (35) logical_or -> logical_and .
+    (39) logical_and -> logical_and . GT comparison
+    (40) logical_and -> logical_and . LT comparison
+    (41) logical_and -> logical_and . GTE comparison
+    (42) logical_and -> logical_and . LTE comparison
+
+    EQUALS          reduce using rule 35 (logical_or -> logical_and .)
+    NOTEQUALS       reduce using rule 35 (logical_or -> logical_and .)
+    THEN            reduce using rule 35 (logical_or -> logical_and .)
+    LBRACE          reduce using rule 35 (logical_or -> logical_and .)
+    SEMICOLON       reduce using rule 35 (logical_or -> logical_and .)
+    COMMA           reduce using rule 35 (logical_or -> logical_and .)
+    RPAREN          reduce using rule 35 (logical_or -> logical_and .)
+    RBRACKET        reduce using rule 35 (logical_or -> logical_and .)
+    GT              shift and go to state 61
+    LT              shift and go to state 62
+    GTE             shift and go to state 63
+    LTE             shift and go to state 64
+
+
+state 34
+
+    (38) logical_and -> comparison .
+
+    GT              reduce using rule 38 (logical_and -> comparison .)
+    LT              reduce using rule 38 (logical_and -> comparison .)
+    GTE             reduce using rule 38 (logical_and -> comparison .)
+    LTE             reduce using rule 38 (logical_and -> comparison .)
+    EQUALS          reduce using rule 38 (logical_and -> comparison .)
+    NOTEQUALS       reduce using rule 38 (logical_and -> comparison .)
+    THEN            reduce using rule 38 (logical_and -> comparison .)
+    LBRACE          reduce using rule 38 (logical_and -> comparison .)
+    SEMICOLON       reduce using rule 38 (logical_and -> comparison .)
+    COMMA           reduce using rule 38 (logical_and -> comparison .)
+    RPAREN          reduce using rule 38 (logical_and -> comparison .)
+    RBRACKET        reduce using rule 38 (logical_and -> comparison .)
+
+
+state 35
+
+    (43) comparison -> arithmetic .
+    (45) arithmetic -> arithmetic . PLUS term
+    (46) arithmetic -> arithmetic . MINUS term
+
+    GT              reduce using rule 43 (comparison -> arithmetic .)
+    LT              reduce using rule 43 (comparison -> arithmetic .)
+    GTE             reduce using rule 43 (comparison -> arithmetic .)
+    LTE             reduce using rule 43 (comparison -> arithmetic .)
+    EQUALS          reduce using rule 43 (comparison -> arithmetic .)
+    NOTEQUALS       reduce using rule 43 (comparison -> arithmetic .)
+    THEN            reduce using rule 43 (comparison -> arithmetic .)
+    LBRACE          reduce using rule 43 (comparison -> arithmetic .)
+    SEMICOLON       reduce using rule 43 (comparison -> arithmetic .)
+    COMMA           reduce using rule 43 (comparison -> arithmetic .)
+    RPAREN          reduce using rule 43 (comparison -> arithmetic .)
+    RBRACKET        reduce using rule 43 (comparison -> arithmetic .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+
+
+state 36
+
+    (44) arithmetic -> term .
+    (48) term -> term . MULTIPLY factor
+    (49) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 44 (arithmetic -> term .)
+    MINUS           reduce using rule 44 (arithmetic -> term .)
+    GT              reduce using rule 44 (arithmetic -> term .)
+    LT              reduce using rule 44 (arithmetic -> term .)
+    GTE             reduce using rule 44 (arithmetic -> term .)
+    LTE             reduce using rule 44 (arithmetic -> term .)
+    EQUALS          reduce using rule 44 (arithmetic -> term .)
+    NOTEQUALS       reduce using rule 44 (arithmetic -> term .)
+    THEN            reduce using rule 44 (arithmetic -> term .)
+    LBRACE          reduce using rule 44 (arithmetic -> term .)
+    SEMICOLON       reduce using rule 44 (arithmetic -> term .)
+    COMMA           reduce using rule 44 (arithmetic -> term .)
+    RPAREN          reduce using rule 44 (arithmetic -> term .)
+    RBRACKET        reduce using rule 44 (arithmetic -> term .)
+    MULTIPLY        shift and go to state 67
+    DIVIDE          shift and go to state 68
+
+
+state 37
+
+    (47) term -> factor .
+
+    MULTIPLY        reduce using rule 47 (term -> factor .)
+    DIVIDE          reduce using rule 47 (term -> factor .)
+    PLUS            reduce using rule 47 (term -> factor .)
+    MINUS           reduce using rule 47 (term -> factor .)
+    GT              reduce using rule 47 (term -> factor .)
+    LT              reduce using rule 47 (term -> factor .)
+    GTE             reduce using rule 47 (term -> factor .)
+    LTE             reduce using rule 47 (term -> factor .)
+    EQUALS          reduce using rule 47 (term -> factor .)
+    NOTEQUALS       reduce using rule 47 (term -> factor .)
+    THEN            reduce using rule 47 (term -> factor .)
+    LBRACE          reduce using rule 47 (term -> factor .)
+    SEMICOLON       reduce using rule 47 (term -> factor .)
+    COMMA           reduce using rule 47 (term -> factor .)
+    RPAREN          reduce using rule 47 (term -> factor .)
+    RBRACKET        reduce using rule 47 (term -> factor .)
+
+
+state 38
+
+    (50) factor -> NUMBER .
+
+    MULTIPLY        reduce using rule 50 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 50 (factor -> NUMBER .)
+    PLUS            reduce using rule 50 (factor -> NUMBER .)
+    MINUS           reduce using rule 50 (factor -> NUMBER .)
+    GT              reduce using rule 50 (factor -> NUMBER .)
+    LT              reduce using rule 50 (factor -> NUMBER .)
+    GTE             reduce using rule 50 (factor -> NUMBER .)
+    LTE             reduce using rule 50 (factor -> NUMBER .)
+    EQUALS          reduce using rule 50 (factor -> NUMBER .)
+    NOTEQUALS       reduce using rule 50 (factor -> NUMBER .)
+    THEN            reduce using rule 50 (factor -> NUMBER .)
+    LBRACE          reduce using rule 50 (factor -> NUMBER .)
+    SEMICOLON       reduce using rule 50 (factor -> NUMBER .)
+    COMMA           reduce using rule 50 (factor -> NUMBER .)
+    RPAREN          reduce using rule 50 (factor -> NUMBER .)
+    RBRACKET        reduce using rule 50 (factor -> NUMBER .)
+
+
+state 39
+
+    (51) factor -> STRING .
+
+    MULTIPLY        reduce using rule 51 (factor -> STRING .)
+    DIVIDE          reduce using rule 51 (factor -> STRING .)
+    PLUS            reduce using rule 51 (factor -> STRING .)
+    MINUS           reduce using rule 51 (factor -> STRING .)
+    GT              reduce using rule 51 (factor -> STRING .)
+    LT              reduce using rule 51 (factor -> STRING .)
+    GTE             reduce using rule 51 (factor -> STRING .)
+    LTE             reduce using rule 51 (factor -> STRING .)
+    EQUALS          reduce using rule 51 (factor -> STRING .)
+    NOTEQUALS       reduce using rule 51 (factor -> STRING .)
+    THEN            reduce using rule 51 (factor -> STRING .)
+    LBRACE          reduce using rule 51 (factor -> STRING .)
+    SEMICOLON       reduce using rule 51 (factor -> STRING .)
+    COMMA           reduce using rule 51 (factor -> STRING .)
+    RPAREN          reduce using rule 51 (factor -> STRING .)
+    RBRACKET        reduce using rule 51 (factor -> STRING .)
+
+
+state 40
+
+    (52) factor -> BOOLEAN .
+
+    MULTIPLY        reduce using rule 52 (factor -> BOOLEAN .)
+    DIVIDE          reduce using rule 52 (factor -> BOOLEAN .)
+    PLUS            reduce using rule 52 (factor -> BOOLEAN .)
+    MINUS           reduce using rule 52 (factor -> BOOLEAN .)
+    GT              reduce using rule 52 (factor -> BOOLEAN .)
+    LT              reduce using rule 52 (factor -> BOOLEAN .)
+    GTE             reduce using rule 52 (factor -> BOOLEAN .)
+    LTE             reduce using rule 52 (factor -> BOOLEAN .)
+    EQUALS          reduce using rule 52 (factor -> BOOLEAN .)
+    NOTEQUALS       reduce using rule 52 (factor -> BOOLEAN .)
+    THEN            reduce using rule 52 (factor -> BOOLEAN .)
+    LBRACE          reduce using rule 52 (factor -> BOOLEAN .)
+    SEMICOLON       reduce using rule 52 (factor -> BOOLEAN .)
+    COMMA           reduce using rule 52 (factor -> BOOLEAN .)
+    RPAREN          reduce using rule 52 (factor -> BOOLEAN .)
+    RBRACKET        reduce using rule 52 (factor -> BOOLEAN .)
+
+
+state 41
+
+    (53) factor -> ID .
+    (57) array_access -> ID . LBRACKET expression RBRACKET
+    (58) function_call -> ID . LPAREN arg_list RPAREN
+
+    MULTIPLY        reduce using rule 53 (factor -> ID .)
+    DIVIDE          reduce using rule 53 (factor -> ID .)
+    PLUS            reduce using rule 53 (factor -> ID .)
+    MINUS           reduce using rule 53 (factor -> ID .)
+    GT              reduce using rule 53 (factor -> ID .)
+    LT              reduce using rule 53 (factor -> ID .)
+    GTE             reduce using rule 53 (factor -> ID .)
+    LTE             reduce using rule 53 (factor -> ID .)
+    EQUALS          reduce using rule 53 (factor -> ID .)
+    NOTEQUALS       reduce using rule 53 (factor -> ID .)
+    THEN            reduce using rule 53 (factor -> ID .)
+    LBRACE          reduce using rule 53 (factor -> ID .)
+    SEMICOLON       reduce using rule 53 (factor -> ID .)
+    COMMA           reduce using rule 53 (factor -> ID .)
+    RPAREN          reduce using rule 53 (factor -> ID .)
+    RBRACKET        reduce using rule 53 (factor -> ID .)
+    LBRACKET        shift and go to state 27
+    LPAREN          shift and go to state 26
+
+
+state 42
+
+    (54) factor -> array_access .
+
+    MULTIPLY        reduce using rule 54 (factor -> array_access .)
+    DIVIDE          reduce using rule 54 (factor -> array_access .)
+    PLUS            reduce using rule 54 (factor -> array_access .)
+    MINUS           reduce using rule 54 (factor -> array_access .)
+    GT              reduce using rule 54 (factor -> array_access .)
+    LT              reduce using rule 54 (factor -> array_access .)
+    GTE             reduce using rule 54 (factor -> array_access .)
+    LTE             reduce using rule 54 (factor -> array_access .)
+    EQUALS          reduce using rule 54 (factor -> array_access .)
+    NOTEQUALS       reduce using rule 54 (factor -> array_access .)
+    THEN            reduce using rule 54 (factor -> array_access .)
+    LBRACE          reduce using rule 54 (factor -> array_access .)
+    SEMICOLON       reduce using rule 54 (factor -> array_access .)
+    COMMA           reduce using rule 54 (factor -> array_access .)
+    RPAREN          reduce using rule 54 (factor -> array_access .)
+    RBRACKET        reduce using rule 54 (factor -> array_access .)
+
+
+state 43
+
+    (55) factor -> function_call .
+
+    MULTIPLY        reduce using rule 55 (factor -> function_call .)
+    DIVIDE          reduce using rule 55 (factor -> function_call .)
+    PLUS            reduce using rule 55 (factor -> function_call .)
+    MINUS           reduce using rule 55 (factor -> function_call .)
+    GT              reduce using rule 55 (factor -> function_call .)
+    LT              reduce using rule 55 (factor -> function_call .)
+    GTE             reduce using rule 55 (factor -> function_call .)
+    LTE             reduce using rule 55 (factor -> function_call .)
+    EQUALS          reduce using rule 55 (factor -> function_call .)
+    NOTEQUALS       reduce using rule 55 (factor -> function_call .)
+    THEN            reduce using rule 55 (factor -> function_call .)
+    LBRACE          reduce using rule 55 (factor -> function_call .)
+    SEMICOLON       reduce using rule 55 (factor -> function_call .)
+    COMMA           reduce using rule 55 (factor -> function_call .)
+    RPAREN          reduce using rule 55 (factor -> function_call .)
+    RBRACKET        reduce using rule 55 (factor -> function_call .)
+
+
+state 44
+
+    (56) factor -> LPAREN . expression RPAREN
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 69
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 45
+
+    (32) while_loop -> WHILE expression . block
+    (15) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 71
+
+    block                          shift and go to state 70
+
+state 46
+
+    (33) for_loop -> FOR LPAREN . assignment expression SEMICOLON assignment RPAREN block
+    (28) assignment -> . ID ASSIGN expression SEMICOLON
+    (29) assignment -> . array_access ASSIGN expression SEMICOLON
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+
+    ID              shift and go to state 73
+
+    assignment                     shift and go to state 72
+    array_access                   shift and go to state 17
+
+state 47
+
+    (63) return_statement -> RETURN expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 74
+
+
+state 48
+
+    (64) output_statement -> OUTPUT expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 75
+
+
+state 49
+
+    (7) var_declaration -> TYPE ID ASSIGN . expression SEMICOLON
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 76
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 50
+
+    (8) var_declaration -> TYPE ID LBRACKET . NUMBER RBRACKET SEMICOLON
+
+    NUMBER          shift and go to state 77
+
+
+state 51
+
+    (28) assignment -> ID ASSIGN expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 78
+
+
+state 52
+
+    (58) function_call -> ID LPAREN arg_list . RPAREN
+
+    RPAREN          shift and go to state 79
+
+
+state 53
+
+    (60) arg_list -> arg_list_not_empty .
+    (62) arg_list_not_empty -> arg_list_not_empty . COMMA expression
+
+    RPAREN          reduce using rule 60 (arg_list -> arg_list_not_empty .)
+    COMMA           shift and go to state 80
+
+
+state 54
+
+    (61) arg_list_not_empty -> expression .
+
+    COMMA           reduce using rule 61 (arg_list_not_empty -> expression .)
+    RPAREN          reduce using rule 61 (arg_list_not_empty -> expression .)
+
+
+state 55
+
+    (57) array_access -> ID LBRACKET expression . RBRACKET
+
+    RBRACKET        shift and go to state 81
+
+
+state 56
+
+    (9) function_declaration -> FUNCTION ID LPAREN . param_list RPAREN TYPE block
+    (10) param_list -> .
+    (11) param_list -> . param_list_not_empty
+    (12) param_list_not_empty -> . param
+    (13) param_list_not_empty -> . param_list_not_empty COMMA param
+    (14) param -> . TYPE ID
+
+    RPAREN          reduce using rule 10 (param_list -> .)
+    TYPE            shift and go to state 83
+
+    param_list                     shift and go to state 82
+    param_list_not_empty           shift and go to state 84
+    param                          shift and go to state 85
+
+state 57
+
+    (29) assignment -> array_access ASSIGN expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 86
+
+
+state 58
+
+    (30) if_statement -> IF expression THEN . block END
+    (31) if_statement -> IF expression THEN . block ELSE block END
+    (15) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 71
+
+    block                          shift and go to state 87
+
+state 59
+
+    (36) logical_or -> logical_or EQUALS . logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    logical_and                    shift and go to state 88
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 60
+
+    (37) logical_or -> logical_or NOTEQUALS . logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    logical_and                    shift and go to state 89
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 61
+
+    (39) logical_and -> logical_and GT . comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    comparison                     shift and go to state 90
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 62
+
+    (40) logical_and -> logical_and LT . comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    comparison                     shift and go to state 91
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 63
+
+    (41) logical_and -> logical_and GTE . comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    comparison                     shift and go to state 92
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 64
+
+    (42) logical_and -> logical_and LTE . comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    comparison                     shift and go to state 93
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 65
+
+    (45) arithmetic -> arithmetic PLUS . term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    term                           shift and go to state 94
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 66
+
+    (46) arithmetic -> arithmetic MINUS . term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    term                           shift and go to state 95
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 67
+
+    (48) term -> term MULTIPLY . factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    factor                         shift and go to state 96
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 68
+
+    (49) term -> term DIVIDE . factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    factor                         shift and go to state 97
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 69
+
+    (56) factor -> LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 98
+
+
+state 70
+
+    (32) while_loop -> WHILE expression block .
+
+    TYPE            reduce using rule 32 (while_loop -> WHILE expression block .)
+    FUNCTION        reduce using rule 32 (while_loop -> WHILE expression block .)
+    ID              reduce using rule 32 (while_loop -> WHILE expression block .)
+    IF              reduce using rule 32 (while_loop -> WHILE expression block .)
+    WHILE           reduce using rule 32 (while_loop -> WHILE expression block .)
+    FOR             reduce using rule 32 (while_loop -> WHILE expression block .)
+    RETURN          reduce using rule 32 (while_loop -> WHILE expression block .)
+    OUTPUT          reduce using rule 32 (while_loop -> WHILE expression block .)
+    $end            reduce using rule 32 (while_loop -> WHILE expression block .)
+    RBRACE          reduce using rule 32 (while_loop -> WHILE expression block .)
+
+
+state 71
+
+    (15) block -> LBRACE . statements RBRACE
+    (16) statements -> .
+    (17) statements -> . statement_list
+    (18) statement_list -> . statement
+    (19) statement_list -> . statement_list statement
+    (20) statement -> . var_declaration
+    (21) statement -> . assignment
+    (22) statement -> . if_statement
+    (23) statement -> . while_loop
+    (24) statement -> . for_loop
+    (25) statement -> . function_call SEMICOLON
+    (26) statement -> . return_statement
+    (27) statement -> . output_statement
+    (7) var_declaration -> . TYPE ID ASSIGN expression SEMICOLON
+    (8) var_declaration -> . TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON
+    (28) assignment -> . ID ASSIGN expression SEMICOLON
+    (29) assignment -> . array_access ASSIGN expression SEMICOLON
+    (30) if_statement -> . IF expression THEN block END
+    (31) if_statement -> . IF expression THEN block ELSE block END
+    (32) while_loop -> . WHILE expression block
+    (33) for_loop -> . FOR LPAREN assignment expression SEMICOLON assignment RPAREN block
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+    (63) return_statement -> . RETURN expression SEMICOLON
+    (64) output_statement -> . OUTPUT expression SEMICOLON
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+
+    RBRACE          reduce using rule 16 (statements -> .)
+    TYPE            shift and go to state 7
+    ID              shift and go to state 8
+    IF              shift and go to state 18
+    WHILE           shift and go to state 19
+    FOR             shift and go to state 20
+    RETURN          shift and go to state 21
+    OUTPUT          shift and go to state 22
+
+    statements                     shift and go to state 99
+    statement_list                 shift and go to state 100
+    statement                      shift and go to state 101
+    var_declaration                shift and go to state 102
+    assignment                     shift and go to state 10
+    if_statement                   shift and go to state 11
+    while_loop                     shift and go to state 12
+    for_loop                       shift and go to state 13
+    function_call                  shift and go to state 14
+    return_statement               shift and go to state 15
+    output_statement               shift and go to state 16
+    array_access                   shift and go to state 17
+
+state 72
+
+    (33) for_loop -> FOR LPAREN assignment . expression SEMICOLON assignment RPAREN block
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 103
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 73
+
+    (28) assignment -> ID . ASSIGN expression SEMICOLON
+    (57) array_access -> ID . LBRACKET expression RBRACKET
+
+    ASSIGN          shift and go to state 25
+    LBRACKET        shift and go to state 27
+
+
+state 74
+
+    (63) return_statement -> RETURN expression SEMICOLON .
+
+    TYPE            reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    FUNCTION        reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    ID              reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    IF              reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    WHILE           reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    FOR             reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    RETURN          reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    OUTPUT          reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    $end            reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+    RBRACE          reduce using rule 63 (return_statement -> RETURN expression SEMICOLON .)
+
+
+state 75
+
+    (64) output_statement -> OUTPUT expression SEMICOLON .
+
+    TYPE            reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    FUNCTION        reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    ID              reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    IF              reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    WHILE           reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    FOR             reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    RETURN          reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    OUTPUT          reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    $end            reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+    RBRACE          reduce using rule 64 (output_statement -> OUTPUT expression SEMICOLON .)
+
+
+state 76
+
+    (7) var_declaration -> TYPE ID ASSIGN expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 104
+
+
+state 77
+
+    (8) var_declaration -> TYPE ID LBRACKET NUMBER . RBRACKET SEMICOLON
+
+    RBRACKET        shift and go to state 105
+
+
+state 78
+
+    (28) assignment -> ID ASSIGN expression SEMICOLON .
+
+    TYPE            reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    FUNCTION        reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    WHILE           reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    FOR             reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    RETURN          reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    OUTPUT          reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    NUMBER          reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    STRING          reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    BOOLEAN         reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+    RPAREN          reduce using rule 28 (assignment -> ID ASSIGN expression SEMICOLON .)
+
+
+state 79
+
+    (58) function_call -> ID LPAREN arg_list RPAREN .
+
+    SEMICOLON       reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    MULTIPLY        reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    DIVIDE          reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    PLUS            reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    MINUS           reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    GT              reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    LT              reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    GTE             reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    LTE             reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    EQUALS          reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    NOTEQUALS       reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    THEN            reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    LBRACE          reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    COMMA           reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    RPAREN          reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+    RBRACKET        reduce using rule 58 (function_call -> ID LPAREN arg_list RPAREN .)
+
+
+state 80
+
+    (62) arg_list_not_empty -> arg_list_not_empty COMMA . expression
+    (34) expression -> . logical_or
+    (35) logical_or -> . logical_and
+    (36) logical_or -> . logical_or EQUALS logical_and
+    (37) logical_or -> . logical_or NOTEQUALS logical_and
+    (38) logical_and -> . comparison
+    (39) logical_and -> . logical_and GT comparison
+    (40) logical_and -> . logical_and LT comparison
+    (41) logical_and -> . logical_and GTE comparison
+    (42) logical_and -> . logical_and LTE comparison
+    (43) comparison -> . arithmetic
+    (44) arithmetic -> . term
+    (45) arithmetic -> . arithmetic PLUS term
+    (46) arithmetic -> . arithmetic MINUS term
+    (47) term -> . factor
+    (48) term -> . term MULTIPLY factor
+    (49) term -> . term DIVIDE factor
+    (50) factor -> . NUMBER
+    (51) factor -> . STRING
+    (52) factor -> . BOOLEAN
+    (53) factor -> . ID
+    (54) factor -> . array_access
+    (55) factor -> . function_call
+    (56) factor -> . LPAREN expression RPAREN
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+
+    NUMBER          shift and go to state 38
+    STRING          shift and go to state 39
+    BOOLEAN         shift and go to state 40
+    ID              shift and go to state 41
+    LPAREN          shift and go to state 44
+
+    expression                     shift and go to state 106
+    logical_or                     shift and go to state 32
+    logical_and                    shift and go to state 33
+    comparison                     shift and go to state 34
+    arithmetic                     shift and go to state 35
+    term                           shift and go to state 36
+    factor                         shift and go to state 37
+    array_access                   shift and go to state 42
+    function_call                  shift and go to state 43
+
+state 81
+
+    (57) array_access -> ID LBRACKET expression RBRACKET .
+
+    ASSIGN          reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    MULTIPLY        reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    GT              reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    LT              reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    GTE             reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    LTE             reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    EQUALS          reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    NOTEQUALS       reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    THEN            reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    LBRACE          reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    SEMICOLON       reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 57 (array_access -> ID LBRACKET expression RBRACKET .)
+
+
+state 82
+
+    (9) function_declaration -> FUNCTION ID LPAREN param_list . RPAREN TYPE block
+
+    RPAREN          shift and go to state 107
+
+
+state 83
+
+    (14) param -> TYPE . ID
+
+    ID              shift and go to state 108
+
+
+state 84
+
+    (11) param_list -> param_list_not_empty .
+    (13) param_list_not_empty -> param_list_not_empty . COMMA param
+
+    RPAREN          reduce using rule 11 (param_list -> param_list_not_empty .)
+    COMMA           shift and go to state 109
+
+
+state 85
+
+    (12) param_list_not_empty -> param .
+
+    COMMA           reduce using rule 12 (param_list_not_empty -> param .)
+    RPAREN          reduce using rule 12 (param_list_not_empty -> param .)
+
+
+state 86
+
+    (29) assignment -> array_access ASSIGN expression SEMICOLON .
+
+    TYPE            reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    FUNCTION        reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    WHILE           reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    FOR             reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    RETURN          reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    OUTPUT          reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    NUMBER          reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    STRING          reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    BOOLEAN         reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+    RPAREN          reduce using rule 29 (assignment -> array_access ASSIGN expression SEMICOLON .)
+
+
+state 87
+
+    (30) if_statement -> IF expression THEN block . END
+    (31) if_statement -> IF expression THEN block . ELSE block END
+
+    END             shift and go to state 110
+    ELSE            shift and go to state 111
+
+
+state 88
+
+    (36) logical_or -> logical_or EQUALS logical_and .
+    (39) logical_and -> logical_and . GT comparison
+    (40) logical_and -> logical_and . LT comparison
+    (41) logical_and -> logical_and . GTE comparison
+    (42) logical_and -> logical_and . LTE comparison
+
+    EQUALS          reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    NOTEQUALS       reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    THEN            reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    LBRACE          reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    SEMICOLON       reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    COMMA           reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    RPAREN          reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    RBRACKET        reduce using rule 36 (logical_or -> logical_or EQUALS logical_and .)
+    GT              shift and go to state 61
+    LT              shift and go to state 62
+    GTE             shift and go to state 63
+    LTE             shift and go to state 64
+
+
+state 89
+
+    (37) logical_or -> logical_or NOTEQUALS logical_and .
+    (39) logical_and -> logical_and . GT comparison
+    (40) logical_and -> logical_and . LT comparison
+    (41) logical_and -> logical_and . GTE comparison
+    (42) logical_and -> logical_and . LTE comparison
+
+    EQUALS          reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    NOTEQUALS       reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    THEN            reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    LBRACE          reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    SEMICOLON       reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    COMMA           reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    RPAREN          reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    RBRACKET        reduce using rule 37 (logical_or -> logical_or NOTEQUALS logical_and .)
+    GT              shift and go to state 61
+    LT              shift and go to state 62
+    GTE             shift and go to state 63
+    LTE             shift and go to state 64
+
+
+state 90
+
+    (39) logical_and -> logical_and GT comparison .
+
+    GT              reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    LT              reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    GTE             reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    LTE             reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    EQUALS          reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    NOTEQUALS       reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    THEN            reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    LBRACE          reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    SEMICOLON       reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    COMMA           reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    RPAREN          reduce using rule 39 (logical_and -> logical_and GT comparison .)
+    RBRACKET        reduce using rule 39 (logical_and -> logical_and GT comparison .)
+
+
+state 91
+
+    (40) logical_and -> logical_and LT comparison .
+
+    GT              reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    LT              reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    GTE             reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    LTE             reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    EQUALS          reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    NOTEQUALS       reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    THEN            reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    LBRACE          reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    SEMICOLON       reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    COMMA           reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    RPAREN          reduce using rule 40 (logical_and -> logical_and LT comparison .)
+    RBRACKET        reduce using rule 40 (logical_and -> logical_and LT comparison .)
+
+
+state 92
+
+    (41) logical_and -> logical_and GTE comparison .
+
+    GT              reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    LT              reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    GTE             reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    LTE             reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    EQUALS          reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    NOTEQUALS       reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    THEN            reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    LBRACE          reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    SEMICOLON       reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    COMMA           reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    RPAREN          reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+    RBRACKET        reduce using rule 41 (logical_and -> logical_and GTE comparison .)
+
+
+state 93
+
+    (42) logical_and -> logical_and LTE comparison .
+
+    GT              reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    LT              reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    GTE             reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    LTE             reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    EQUALS          reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    NOTEQUALS       reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    THEN            reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    LBRACE          reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    SEMICOLON       reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    COMMA           reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    RPAREN          reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+    RBRACKET        reduce using rule 42 (logical_and -> logical_and LTE comparison .)
+
+
+state 94
+
+    (45) arithmetic -> arithmetic PLUS term .
+    (48) term -> term . MULTIPLY factor
+    (49) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    MINUS           reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    GT              reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    LT              reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    GTE             reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    LTE             reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    EQUALS          reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    NOTEQUALS       reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    THEN            reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    LBRACE          reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    SEMICOLON       reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    COMMA           reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    RPAREN          reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    RBRACKET        reduce using rule 45 (arithmetic -> arithmetic PLUS term .)
+    MULTIPLY        shift and go to state 67
+    DIVIDE          shift and go to state 68
+
+
+state 95
+
+    (46) arithmetic -> arithmetic MINUS term .
+    (48) term -> term . MULTIPLY factor
+    (49) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    MINUS           reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    GT              reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    LT              reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    GTE             reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    LTE             reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    EQUALS          reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    NOTEQUALS       reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    THEN            reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    LBRACE          reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    SEMICOLON       reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    COMMA           reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    RPAREN          reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    RBRACKET        reduce using rule 46 (arithmetic -> arithmetic MINUS term .)
+    MULTIPLY        shift and go to state 67
+    DIVIDE          shift and go to state 68
+
+
+state 96
+
+    (48) term -> term MULTIPLY factor .
+
+    MULTIPLY        reduce using rule 48 (term -> term MULTIPLY factor .)
+    DIVIDE          reduce using rule 48 (term -> term MULTIPLY factor .)
+    PLUS            reduce using rule 48 (term -> term MULTIPLY factor .)
+    MINUS           reduce using rule 48 (term -> term MULTIPLY factor .)
+    GT              reduce using rule 48 (term -> term MULTIPLY factor .)
+    LT              reduce using rule 48 (term -> term MULTIPLY factor .)
+    GTE             reduce using rule 48 (term -> term MULTIPLY factor .)
+    LTE             reduce using rule 48 (term -> term MULTIPLY factor .)
+    EQUALS          reduce using rule 48 (term -> term MULTIPLY factor .)
+    NOTEQUALS       reduce using rule 48 (term -> term MULTIPLY factor .)
+    THEN            reduce using rule 48 (term -> term MULTIPLY factor .)
+    LBRACE          reduce using rule 48 (term -> term MULTIPLY factor .)
+    SEMICOLON       reduce using rule 48 (term -> term MULTIPLY factor .)
+    COMMA           reduce using rule 48 (term -> term MULTIPLY factor .)
+    RPAREN          reduce using rule 48 (term -> term MULTIPLY factor .)
+    RBRACKET        reduce using rule 48 (term -> term MULTIPLY factor .)
+
+
+state 97
+
+    (49) term -> term DIVIDE factor .
+
+    MULTIPLY        reduce using rule 49 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 49 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 49 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 49 (term -> term DIVIDE factor .)
+    GT              reduce using rule 49 (term -> term DIVIDE factor .)
+    LT              reduce using rule 49 (term -> term DIVIDE factor .)
+    GTE             reduce using rule 49 (term -> term DIVIDE factor .)
+    LTE             reduce using rule 49 (term -> term DIVIDE factor .)
+    EQUALS          reduce using rule 49 (term -> term DIVIDE factor .)
+    NOTEQUALS       reduce using rule 49 (term -> term DIVIDE factor .)
+    THEN            reduce using rule 49 (term -> term DIVIDE factor .)
+    LBRACE          reduce using rule 49 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 49 (term -> term DIVIDE factor .)
+    COMMA           reduce using rule 49 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 49 (term -> term DIVIDE factor .)
+    RBRACKET        reduce using rule 49 (term -> term DIVIDE factor .)
+
+
+state 98
+
+    (56) factor -> LPAREN expression RPAREN .
+
+    MULTIPLY        reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    GT              reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    LT              reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    GTE             reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    LTE             reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    NOTEQUALS       reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    THEN            reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    LBRACE          reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 56 (factor -> LPAREN expression RPAREN .)
+
+
+state 99
+
+    (15) block -> LBRACE statements . RBRACE
+
+    RBRACE          shift and go to state 112
+
+
+state 100
+
+    (17) statements -> statement_list .
+    (19) statement_list -> statement_list . statement
+    (20) statement -> . var_declaration
+    (21) statement -> . assignment
+    (22) statement -> . if_statement
+    (23) statement -> . while_loop
+    (24) statement -> . for_loop
+    (25) statement -> . function_call SEMICOLON
+    (26) statement -> . return_statement
+    (27) statement -> . output_statement
+    (7) var_declaration -> . TYPE ID ASSIGN expression SEMICOLON
+    (8) var_declaration -> . TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON
+    (28) assignment -> . ID ASSIGN expression SEMICOLON
+    (29) assignment -> . array_access ASSIGN expression SEMICOLON
+    (30) if_statement -> . IF expression THEN block END
+    (31) if_statement -> . IF expression THEN block ELSE block END
+    (32) while_loop -> . WHILE expression block
+    (33) for_loop -> . FOR LPAREN assignment expression SEMICOLON assignment RPAREN block
+    (58) function_call -> . ID LPAREN arg_list RPAREN
+    (63) return_statement -> . RETURN expression SEMICOLON
+    (64) output_statement -> . OUTPUT expression SEMICOLON
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+
+    RBRACE          reduce using rule 17 (statements -> statement_list .)
+    TYPE            shift and go to state 7
+    ID              shift and go to state 8
+    IF              shift and go to state 18
+    WHILE           shift and go to state 19
+    FOR             shift and go to state 20
+    RETURN          shift and go to state 21
+    OUTPUT          shift and go to state 22
+
+    statement                      shift and go to state 113
+    var_declaration                shift and go to state 102
+    assignment                     shift and go to state 10
+    if_statement                   shift and go to state 11
+    while_loop                     shift and go to state 12
+    for_loop                       shift and go to state 13
+    function_call                  shift and go to state 14
+    return_statement               shift and go to state 15
+    output_statement               shift and go to state 16
+    array_access                   shift and go to state 17
+
+state 101
+
+    (18) statement_list -> statement .
+
+    TYPE            reduce using rule 18 (statement_list -> statement .)
+    ID              reduce using rule 18 (statement_list -> statement .)
+    IF              reduce using rule 18 (statement_list -> statement .)
+    WHILE           reduce using rule 18 (statement_list -> statement .)
+    FOR             reduce using rule 18 (statement_list -> statement .)
+    RETURN          reduce using rule 18 (statement_list -> statement .)
+    OUTPUT          reduce using rule 18 (statement_list -> statement .)
+    RBRACE          reduce using rule 18 (statement_list -> statement .)
+
+
+state 102
+
+    (20) statement -> var_declaration .
+
+    TYPE            reduce using rule 20 (statement -> var_declaration .)
+    ID              reduce using rule 20 (statement -> var_declaration .)
+    IF              reduce using rule 20 (statement -> var_declaration .)
+    WHILE           reduce using rule 20 (statement -> var_declaration .)
+    FOR             reduce using rule 20 (statement -> var_declaration .)
+    RETURN          reduce using rule 20 (statement -> var_declaration .)
+    OUTPUT          reduce using rule 20 (statement -> var_declaration .)
+    RBRACE          reduce using rule 20 (statement -> var_declaration .)
+
+
+state 103
+
+    (33) for_loop -> FOR LPAREN assignment expression . SEMICOLON assignment RPAREN block
+
+    SEMICOLON       shift and go to state 114
+
+
+state 104
+
+    (7) var_declaration -> TYPE ID ASSIGN expression SEMICOLON .
+
+    TYPE            reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    FUNCTION        reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    WHILE           reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    FOR             reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    RETURN          reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    OUTPUT          reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 7 (var_declaration -> TYPE ID ASSIGN expression SEMICOLON .)
+
+
+state 105
+
+    (8) var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET . SEMICOLON
+
+    SEMICOLON       shift and go to state 115
+
+
+state 106
+
+    (62) arg_list_not_empty -> arg_list_not_empty COMMA expression .
+
+    COMMA           reduce using rule 62 (arg_list_not_empty -> arg_list_not_empty COMMA expression .)
+    RPAREN          reduce using rule 62 (arg_list_not_empty -> arg_list_not_empty COMMA expression .)
+
+
+state 107
+
+    (9) function_declaration -> FUNCTION ID LPAREN param_list RPAREN . TYPE block
+
+    TYPE            shift and go to state 116
+
+
+state 108
+
+    (14) param -> TYPE ID .
+
+    COMMA           reduce using rule 14 (param -> TYPE ID .)
+    RPAREN          reduce using rule 14 (param -> TYPE ID .)
+
+
+state 109
+
+    (13) param_list_not_empty -> param_list_not_empty COMMA . param
+    (14) param -> . TYPE ID
+
+    TYPE            shift and go to state 83
+
+    param                          shift and go to state 117
+
+state 110
+
+    (30) if_statement -> IF expression THEN block END .
+
+    TYPE            reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    FUNCTION        reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    ID              reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    IF              reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    WHILE           reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    FOR             reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    RETURN          reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    OUTPUT          reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    $end            reduce using rule 30 (if_statement -> IF expression THEN block END .)
+    RBRACE          reduce using rule 30 (if_statement -> IF expression THEN block END .)
+
+
+state 111
+
+    (31) if_statement -> IF expression THEN block ELSE . block END
+    (15) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 71
+
+    block                          shift and go to state 118
+
+state 112
+
+    (15) block -> LBRACE statements RBRACE .
+
+    TYPE            reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    FUNCTION        reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    ID              reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    IF              reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    WHILE           reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    FOR             reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    RETURN          reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    OUTPUT          reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    $end            reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    END             reduce using rule 15 (block -> LBRACE statements RBRACE .)
+    ELSE            reduce using rule 15 (block -> LBRACE statements RBRACE .)
+
+
+state 113
+
+    (19) statement_list -> statement_list statement .
+
+    TYPE            reduce using rule 19 (statement_list -> statement_list statement .)
+    ID              reduce using rule 19 (statement_list -> statement_list statement .)
+    IF              reduce using rule 19 (statement_list -> statement_list statement .)
+    WHILE           reduce using rule 19 (statement_list -> statement_list statement .)
+    FOR             reduce using rule 19 (statement_list -> statement_list statement .)
+    RETURN          reduce using rule 19 (statement_list -> statement_list statement .)
+    OUTPUT          reduce using rule 19 (statement_list -> statement_list statement .)
+    RBRACE          reduce using rule 19 (statement_list -> statement_list statement .)
+
+
+state 114
+
+    (33) for_loop -> FOR LPAREN assignment expression SEMICOLON . assignment RPAREN block
+    (28) assignment -> . ID ASSIGN expression SEMICOLON
+    (29) assignment -> . array_access ASSIGN expression SEMICOLON
+    (57) array_access -> . ID LBRACKET expression RBRACKET
+
+    ID              shift and go to state 73
+
+    assignment                     shift and go to state 119
+    array_access                   shift and go to state 17
+
+state 115
+
+    (8) var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .
+
+    TYPE            reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    FUNCTION        reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    ID              reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    IF              reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    WHILE           reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    FOR             reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    RETURN          reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    OUTPUT          reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    $end            reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+    RBRACE          reduce using rule 8 (var_declaration -> TYPE ID LBRACKET NUMBER RBRACKET SEMICOLON .)
+
+
+state 116
+
+    (9) function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE . block
+    (15) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 71
+
+    block                          shift and go to state 120
+
+state 117
+
+    (13) param_list_not_empty -> param_list_not_empty COMMA param .
+
+    COMMA           reduce using rule 13 (param_list_not_empty -> param_list_not_empty COMMA param .)
+    RPAREN          reduce using rule 13 (param_list_not_empty -> param_list_not_empty COMMA param .)
+
+
+state 118
+
+    (31) if_statement -> IF expression THEN block ELSE block . END
+
+    END             shift and go to state 121
+
+
+state 119
+
+    (33) for_loop -> FOR LPAREN assignment expression SEMICOLON assignment . RPAREN block
+
+    RPAREN          shift and go to state 122
+
+
+state 120
+
+    (9) function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .
+
+    TYPE            reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    FUNCTION        reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    ID              reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    IF              reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    WHILE           reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    FOR             reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    RETURN          reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    OUTPUT          reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+    $end            reduce using rule 9 (function_declaration -> FUNCTION ID LPAREN param_list RPAREN TYPE block .)
+
+
+state 121
+
+    (31) if_statement -> IF expression THEN block ELSE block END .
+
+    TYPE            reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    FUNCTION        reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    ID              reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    IF              reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    WHILE           reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    FOR             reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    RETURN          reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    OUTPUT          reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    $end            reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+    RBRACE          reduce using rule 31 (if_statement -> IF expression THEN block ELSE block END .)
+
+
+state 122
+
+    (33) for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN . block
+    (15) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 71
+
+    block                          shift and go to state 123
+
+state 123
+
+    (33) for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .
+
+    TYPE            reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    FUNCTION        reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    ID              reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    IF              reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    WHILE           reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    FOR             reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    RETURN          reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    OUTPUT          reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    $end            reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+    RBRACE          reduce using rule 33 (for_loop -> FOR LPAREN assignment expression SEMICOLON assignment RPAREN block .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 4 resolved using rule (declaration -> var_declaration)
+WARNING: rejected rule (statement -> var_declaration) in state 4

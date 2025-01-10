@@ -134,7 +134,7 @@ open_file_button.pack(pady=3, padx=10)
 load_dir_button = ctk.CTkButton(sidebar, text="Load directory", command=load_directory ,width=20 , height= 20)
 load_dir_button.pack(pady=3, padx=10)
 
-logo_image = Image.open(r"C:\Users\hp-pc\PycharmProjects\my_languge\logo rexi tr png.png")
+logo_image = Image.open(r"C:\Users\othma\Pictures\logoo.jpg")
 logo_photo = CTkImage(logo_image ,size=(100, 100))
 logo_label = ctk.CTkLabel(sidebar, image=logo_photo, text="")
 logo_label.image = logo_photo  # Keep a reference to avoid garbage collection
