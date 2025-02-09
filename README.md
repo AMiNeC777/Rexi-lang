@@ -124,4 +124,4 @@ Amine Hamouchi
 ## Remerciements
 
 - Inspiré par les langages Pascal et Python
-- Développé dans le cadre d'un projet éducatif encadrer par naoual el mouhni
+- Développé dans le cadre d'un projet éducatif encadrer par Naoual MOUHNI
